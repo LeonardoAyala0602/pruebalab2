@@ -20,7 +20,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Usuario Responsable</label>
-                <select name="usuario_owner" id="usuario_owner">
+                <select th:field="*{usuario_owner}">
                     <option th:each="usuarios : ${usuarioEntityList}" th:value="${usuarios.correo}" th:text="${usuarios.nombres} + ' ' + ${usuarios.apellidos}"></option>
                 </select>
             </div>
@@ -29,7 +29,8 @@
         </form>
         <br>
         <h4 class="pb-2 mb-4 border-bottom">Lista de Actividades del Proyecto</h4>
-        <a class="btn btn-primary mt-4 mb-4" th:href="@{'/actividad/newformActividad?idproyecto=' +${proyecto.idproyecto}}">Nueva actividad</a>
+        <a class="btn btn-primary mt-4 mb-4" th:href="@{'/actividad/newformActividad?idproyecto=' +${proyecto.idproyecto}  + '&usuario_owner=' +${proyecto.usuario_owner} }">Nueva actividad</a>
+        <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
         <table class="table table-sm">
             <tr>
                 <th>#</th>
@@ -40,14 +41,14 @@
                 <th></th>
                 <th></th>
             </tr>
-            <tr th:each="actividades,i : ${actividadList}">
+            <tr th:each="actividades,i : ${listaActividadesporProyecto}">
                 <td th:text="${i.index + 1}"></td>
                 <td th:text="${actividades.nombreactividad}"></td>
                 <td th:text="${actividades.usuario_owner}"></td>
                 <td th:text="${actividades.peso}"></td>
                 <td th:text="${actividades.estado}"></td>
-                <td><a class="btn btn-primary" th:href="@{'/proyecto/editar?id=' + ${proyecto.idproyecto}}">Editar</a></td>
-                <td><a class="btn btn-danger" th:href="@{'/proyecto/borrar?id=' + ${proyecto.idproyecto}}">Borrar</a></td>
+                <td><a class="btn btn-primary" th:href="@{'/actividad/editar?id=' + ${actividades.idactividad}}">Editar</a></td>
+                <td><a class="btn btn-danger" th:href="@{'/actividad/borrar?id=' + ${actividades.idactividad}}">Borrar</a></td>
             </tr>
         </table>
     </div>

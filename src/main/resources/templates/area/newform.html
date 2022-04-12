@@ -14,8 +14,8 @@
         <h1 class="pb-2 mb-4 border-bottom">Nueva Area</h1>
         <form method="post" th:action="@{/area/save}" class="col-4">
             <div class="mb-3">
-                <label for="idarea" class="form-label">Nombre del Area</label>
-                <input name="idarea" type="text" class="form-control" id="idarea">
+                <label for="nombre" class="form-label">Nombre del Area</label>
+                <input name="nombre" type="text" class="form-control" id="nombre">
             </div>
             <a th:href="@{/area/listar}" class="btn btn-danger">Cancelar</a>
             <button type="submit" class="btn btn-primary">Registrar</button>

@@ -60,8 +60,8 @@ public class ProyectoController {
             model.addAttribute("proyecto", proyecto);
             List<UsuarioEntity> usuarioEntityList = usuarioRepository.findAll();
             model.addAttribute("usuarioEntityList", usuarioEntityList);
-            List<Actividad> actividadList = actividadRepository.findAll();
-            model.addAttribute("actividadList", actividadList);
+            List<Actividad> listaActividadesporProyecto = actividadRepository.findByIdproyecto(id);
+            model.addAttribute("listaActividadesporProyecto", listaActividadesporProyecto);
             return "proyecto/editform";
         } else {
             return "redirect:/proyecto/listar";
