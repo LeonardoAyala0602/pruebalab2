@@ -1,7 +1,9 @@
 package com.example.pruebalab2.controller;
 
 import com.example.pruebalab2.entity.AreaEntity;
+import com.example.pruebalab2.entity.UsuarioEntity;
 import com.example.pruebalab2.repository.AreaRepository;
+import com.example.pruebalab2.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,9 @@ public class AreaController {
 
     @Autowired
     AreaRepository areaRepository;
+
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     @GetMapping("/listar")
     public String listarAreas(Model model){
@@ -46,6 +51,8 @@ public class AreaController {
         if (optionalArea.isPresent()) {
             AreaEntity area = optionalArea.get();
             model.addAttribute("area", area);
+            List<UsuarioEntity> listaUsuarios = usuarioRepository.findAll();
+            model.addAttribute("listaUsuarios", listaUsuarios);
             return "area/editar";
         } else {
             return "redirect:/area/listar";
