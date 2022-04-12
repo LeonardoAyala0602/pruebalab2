@@ -20,7 +20,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Usuario Responsable</label>
-                <select name="usuario_owner" id="usuario_owner">
+                <select th:field="*{usuario_owner}">
                     <option th:each="usuarios : ${usuarioEntityList}" th:value="${usuarios.correo}" th:text="${usuarios.nombres} + ' ' + ${usuarios.apellidos}"></option>
                 </select>
             </div>
@@ -40,7 +40,7 @@
                 <th></th>
                 <th></th>
             </tr>
-            <tr th:each="actividades,i : ${actividadList}">
+            <tr th:each="actividades,i : ${listaActividadesporProyecto}">
                 <td th:text="${i.index + 1}"></td>
                 <td th:text="${actividades.nombreactividad}"></td>
                 <td th:text="${actividades.usuario_owner}"></td>
