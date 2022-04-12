@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Nuevo Proyecto</title>
+    <title>Editar Proyecto</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
@@ -11,21 +11,21 @@
 <body>
 <main>
     <div class="container px-4 py-5">
-        <h1 class="pb-2 mb-4 border-bottom">Nuevo Proyecto</h1>
-        <form method="post" th:action="@{/proyecto/save}" class="col-4">
+        <h1 class="pb-2 mb-4 border-bottom">Editar Proyecto</h1>
+        <form method="post" th:action="@{'/proyecto/save'}" class="col-4" th:object="${proyecto}">
+            <input type="hidden" th:field="*{idproyecto}"/>
             <div class="mb-3">
-                <label for="nombreproyecto" class="form-label">Nombre del Proyecto</label>
-                <input name="nombreproyecto" type="text" class="form-control" id="nombreproyecto">
+                <label class="form-label">Nombre del Proyecto </label>
+                <input type="text" class="form-control" th:field="*{nombreproyecto}" >
             </div>
             <div class="mb-3">
-                <label for="usuario_owner" class="form-label">Usuario Responsable</label>
-                <br>
+                <label class="form-label">Usuario Responsable</label>
                 <select name="usuario_owner" id="usuario_owner">
                     <option th:each="usuarios : ${usuarioEntityList}" th:value="${usuarios.correo}" th:text="${usuarios.nombres} + ' ' + ${usuarios.apellidos}"></option>
                 </select>
             </div>
             <a th:href="@{'/proyecto/listar'}" class="btn btn-danger">Cancelar</a>
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
         </form>
     </div>
 </main>

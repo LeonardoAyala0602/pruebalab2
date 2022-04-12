@@ -24,8 +24,8 @@
             <td th:text="${i.index + 1}"></td>
             <td th:text="${proyecto.nombreproyecto}"></td>
             <td th:text="${proyecto.usuario_owner}"></td>
-            <td><a class="btn btn-primary" th:href="@{'/proyecto/proyecto?id=' + ${proyecto.idproyecto}}">Editar</a></td>
-            <td><a class="btn btn-danger" th:href="@{'/proyecto/proyecto?id=' + ${proyecto.idproyecto}}">Borrar</a></td>
+            <td><a class="btn btn-primary" th:href="@{'/proyecto/editar?id=' + ${proyecto.idproyecto}}">Editar</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/proyecto/borrar?id=' + ${proyecto.idproyecto}}">Borrar</a></td>
         </tr>
     </table>
 </div>
