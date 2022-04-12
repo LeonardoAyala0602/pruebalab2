@@ -29,7 +29,7 @@
         </form>
         <br>
         <h4 class="pb-2 mb-4 border-bottom">Lista de Actividades del Proyecto</h4>
-        <a class="btn btn-primary mt-4 mb-4" th:href="@{'/actividad/newformActividad?idproyecto=' +${proyecto.idproyecto}}">Nueva actividad</a>
+        <a class="btn btn-primary mt-4 mb-4" th:href="@{'/actividad/newformActividad?idproyecto=' +${proyecto.idproyecto}  + '&usuario_owner=' +${proyecto.usuario_owner} }">Nueva actividad</a>
         <table class="table table-sm">
             <tr>
                 <th>#</th>

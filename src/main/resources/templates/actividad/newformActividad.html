@@ -12,10 +12,7 @@
 <main>
     <div class="container px-4 py-5">
         <h1 class="pb-2 mb-4 border-bottom">Nueva Actividad</h1>
-        <form method="post" th:action="@{/actividad/save}" class="col-4">
-            <div class="mb-3">
-                <input name="idactividad" type="hidden" class="form-control" id="idactividad">
-            </div>
+        <form method="post" th:action="@{'/actividad/save?id=' + ${idproyecto}}" class="col-4">
             <div class="mb-3">
                 <label for="nombreactividad" class="form-label">Nombre de la Actividad</label>
                 <input name="nombreactividad" type="text" class="form-control" id="nombreactividad">
@@ -25,23 +22,20 @@
                 <input name="descripcion" type="text" class="form-control" id="descripcion">
             </div>
             <div class="mb-3">
+                <input name="idproyecto" type="hidden" class="form-control" id="idproyecto" th:value = "${idproyecto}">
+            </div>
+            <div class="mb-3">
                 <label for="usuario_owner" class="form-label">Usuario Responsable</label>
-                <br>
-                <select name="usuario_owner" id="usuario_owner">
-                    <option th:each="usuarios : ${usuarioEntityList}" th:value="${usuarios.correo}" th:text="${usuarios.correo}"></option>
-                </select>
+                <input name="usuario_owner" type="text-hidden" class="form-control" id="usuario_owner" th:value = "${usuario_owner}" readonly>
             </div>
             <div class="mb-3">
                 <label for="peso" class="form-label">Peso de la Actividad</label>
                 <input name="peso" type="text" class="form-control" id="peso" value="0.0">
             </div>
             <div class="mb-3">
-                <input name="idproyecto" type="hidden" class="form-control" id="idproyecto" th:value = "${idproyecto}">
-            </div>
-            <div class="mb-3">
                 <input name="estado" type="hidden" class="form-control" id="estado" value="0">
             </div>
-            <a th:href="@{'/proyecto/editar?=' + ${idproyecto}}" class="btn btn-danger">Cancelar</a>
+            <a th:href="@{'/proyecto/editar?id=' + ${idproyecto}}" class="btn btn-danger">Cancelar</a>
             <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
     </div>
