@@ -51,7 +51,7 @@ public class AreaController {
         if (optionalArea.isPresent()) {
             AreaEntity area = optionalArea.get();
             model.addAttribute("area", area);
-            List<UsuarioEntity> listaUsuarios = usuarioRepository.findAll();
+            List<UsuarioEntity> listaUsuarios = usuarioRepository.findByIdarea(id);
             model.addAttribute("listaUsuarios", listaUsuarios);
             return "area/editar";
         } else {
@@ -59,4 +59,18 @@ public class AreaController {
         }
     }
 
+    @PostMapping("/edit")
+    public String editAreas(AreaEntity area){
+        areaRepository.save(area);
+        return "redirect:/area/listar";
+    }
+
+    @GetMapping("/borrar")
+    public String borrarAreas(@RequestParam("id") int id){
+        Optional<AreaEntity> optionalUsuario = areaRepository.findById(id);
+        if (optionalUsuario.isPresent()) {
+            areaRepository.deleteById(id);
+        }
+        return "redirect:/area/listar";
+    }
 }
