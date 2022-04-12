@@ -24,4 +24,15 @@ public class AreaController {
         return "area/lista";
     }
 
+    @GetMapping("/newform")
+    public String newformAreas(){
+        return "area/newform";
+    }
+
+    @GetMapping("/save")
+    public String saveAreas(AreaEntity area){
+        areaRepository.save(area);
+        return "redirect:/area/listar";
+    }
+
 }

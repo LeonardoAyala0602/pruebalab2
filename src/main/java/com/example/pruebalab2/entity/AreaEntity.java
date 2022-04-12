@@ -11,8 +11,8 @@ public class AreaEntity {
     @Column(name = "idarea")
     private int idarea;
 
-    @Column(name="nombreArea")
-    private String nombreArea;
+    @Column(name="nombrearea")
+    private String nombrearea;
 
     public int getIdarea() {
         return idarea;
@@ -23,10 +23,10 @@ public class AreaEntity {
     }
 
     public String getNombreArea() {
-        return nombreArea;
+        return nombrearea;
     }
 
     public void setNombreArea(String nombreArea) {
-        this.nombreArea = nombreArea;
+        this.nombrearea = nombreArea;
     }
 }
