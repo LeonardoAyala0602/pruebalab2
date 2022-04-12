@@ -26,8 +26,8 @@
             <td th:text="${usuario.correo}"></td>
             <td th:text="${usuario.nombres}"></td>
             <td th:text="${usuario.apellidos}"></td>
-            <td><a class="btn btn-primary" th:href="@{'/usuario/editar?id=' + ${usuario.correo}}">Editar</a></td>
-            <td><a class="btn btn-danger" th:href="@{'/usuario/borrar?id=' + ${usuario.correo}}">Borrar</a></td>
+            <td><a class="btn btn-primary" th:href="@{'/usuario/editar?correo=' + ${usuario.correo}}">Editar</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/usuario/borrar?correo=' + ${usuario.correo}}">Borrar</a></td>
         </tr>
     </table>
 </div>
