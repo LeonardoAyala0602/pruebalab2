@@ -47,8 +47,8 @@
                 <td th:text="${actividades.usuario_owner}"></td>
                 <td th:text="${actividades.peso}"></td>
                 <td th:text="${actividades.estado}"></td>
-                <td><a class="btn btn-primary" th:href="@{'/proyecto/editar?id=' + ${proyecto.idproyecto}}">Editar</a></td>
-                <td><a class="btn btn-danger" th:href="@{'/proyecto/borrar?id=' + ${proyecto.idproyecto}}">Borrar</a></td>
+                <td><a class="btn btn-primary" th:href="@{'/actividad/editar?id=' + ${actividades.idactividad}}">Editar</a></td>
+                <td><a class="btn btn-danger" th:href="@{'/actividad/borrar?id=' + ${actividades.idactividad}}">Borrar</a></td>
             </tr>
         </table>
     </div>

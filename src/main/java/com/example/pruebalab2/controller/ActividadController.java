@@ -2,6 +2,7 @@ package com.example.pruebalab2.controller;
 
 
 import com.example.pruebalab2.entity.Actividad;
+import com.example.pruebalab2.entity.AreaEntity;
 import com.example.pruebalab2.entity.Proyecto;
 import com.example.pruebalab2.entity.UsuarioEntity;
 import com.example.pruebalab2.repository.ActividadRepository;
@@ -36,8 +37,6 @@ public class ActividadController {
     public String newform(@RequestParam("idproyecto") int idproyecto,@RequestParam("usuario_owner") String correo, Model model){
         model.addAttribute("usuario_owner",correo);
         model.addAttribute("idproyecto",idproyecto);
-        String idstring = String.valueOf(idproyecto);
-        System.out.printf(idstring);
         return "actividad/newformActividad";
     }
 
@@ -48,4 +47,22 @@ public class ActividadController {
         return "redirect:/proyecto/editar?id=" + id;
     }
 
+    @GetMapping("/editar")
+    public String editarActividad(@RequestParam("id") int id, Model model){
+        Optional<Actividad> optionalActividad = actividadRepository.findById(id);
+        if (optionalActividad.isPresent()) {
+            Actividad actividad = optionalActividad.get();
+            model.addAttribute("actividad", actividad);
+            return "actividad/editActividad";
+        } else {
+            return "redirect:/proyecto/editar?id=" + id;
+        }
+
+    }
+
+    @PostMapping("/edit")
+    public String editActividad(Actividad actividad, @RequestParam("id") int id){
+        actividadRepository.save(actividad);
+        return "redirect:/proyecto/editar?id=" + id;
+    }
 }
