@@ -38,7 +38,7 @@ public class AreaController {
     }
 
     @PostMapping("/save")
-    public String saveAreas(@RequestParam("idarea") String nombre){
+    public String saveAreas(@RequestParam("nombre") String nombre){
         AreaEntity area = new AreaEntity();
         area.setNombreArea(nombre);
         areaRepository.save(area);

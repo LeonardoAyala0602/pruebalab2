@@ -42,8 +42,9 @@ public class ActividadController {
     }
 
     @PostMapping("/save")
-    public String saveactividad(@RequestParam("id") int id, Actividad actividad){
+    public String saveactividad(@RequestParam("id") int id, Actividad actividad, RedirectAttributes attr){
         actividadRepository.save(actividad);
+        attr.addFlashAttribute("msg","Actividad editada Exitosamente");
         return "redirect:/proyecto/editar?id=" + id;
     }
 
