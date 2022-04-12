@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/area")
@@ -29,10 +32,24 @@ public class AreaController {
         return "area/newform";
     }
 
-    @GetMapping("/save")
-    public String saveAreas(AreaEntity area){
+    @PostMapping("/save")
+    public String saveAreas(@RequestParam("idarea") String nombre){
+        AreaEntity area = new AreaEntity();
+        area.setNombreArea(nombre);
         areaRepository.save(area);
         return "redirect:/area/listar";
+    }
+
+    @GetMapping("/editar")
+    public String editarAreas(@RequestParam("id") int id, Model model){
+        Optional<AreaEntity> optionalArea = areaRepository.findById(id);
+        if (optionalArea.isPresent()) {
+            AreaEntity area = optionalArea.get();
+            model.addAttribute("area", area);
+            return "area/editar";
+        } else {
+            return "redirect:/area/listar";
+        }
     }
 
 }
